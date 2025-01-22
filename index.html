@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 로또 추첨기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        #lotto-results {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .lotto-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>개쩌는 뿌슝빠슝 랜덤 로또 추첨기!!!!!!!</h1>
+    <div id="lotto-results">
+ 
+    </div>
+    <button onclick="generateLotto()">번호 생성하기</button>
+
+    <script>
+        function generateLotto() {
+            const colors = ["#FF5733", "#33FF57", "#3357FF", "#F7DC6F", "#9B59B6", "#FF33A8"]; 
+            const numbers = Array.from({ length: 45 }, (_, i) => i + 1); 
+            
+       
+            for (let i = numbers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+            }
+
+           
+            const selectedNumbers = numbers.slice(0, 6).sort((a, b) => a - b);
+
+        
+            const resultsDiv = document.getElementById('lotto-results');
+            resultsDiv.innerHTML = '';
+
+            selectedNumbers.forEach((num, index) => {
+                const numberDiv = document.createElement('div');
+                numberDiv.className = 'lotto-number';
+                numberDiv.textContent = num;
+                numberDiv.style.backgroundColor = colors[index % colors.length]; 
+                resultsDiv.appendChild(numberDiv);
+            });
+        }
+    </script>
+</body>
+</html>
