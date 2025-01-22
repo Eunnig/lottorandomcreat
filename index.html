@@ -31,6 +31,10 @@
             text-align: center;
             color: white;
         }
+          .bonus-number {
+            background-color: #FFA500; /* 보너스 번호의 색상 */
+            border: 2px dashed #FF4500;
+        }
         button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -94,6 +98,8 @@
        
             const selectedNumbers = numbers.slice(0, 6).sort((a, b) => a - b);
 
+             const bonusNumber = numbers[6];
+
             
             const resultsDiv = document.getElementById('lotto-results');
             resultsDiv.innerHTML = ''; 
@@ -105,6 +111,11 @@
                 numberDiv.style.backgroundColor = colors[index % colors.length];
                 resultsDiv.appendChild(numberDiv);
             });
+
+             const bonusDiv = document.createElement('div');
+            bonusDiv.className = 'lotto-number bonus-number';
+            bonusDiv.textContent = bonusNumber;
+            resultsDiv.appendChild(bonusDiv);
 
             setTimeout(() => {
                 isGenerating = false;
