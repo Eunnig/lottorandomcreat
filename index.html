@@ -111,7 +111,13 @@
                 numberDiv.style.backgroundColor = colors[index % colors.length];
                 resultsDiv.appendChild(numberDiv);
             });
-
+             const plusDiv = document.createElement('div');
+            plusDiv.textContent = '+';
+            plusDiv.style.fontSize = '24px';
+            plusDiv.style.fontWeight = 'bold';
+            plusDiv.style.color = '#333';
+            resultsDiv.appendChild(plusDiv);
+            
              const bonusDiv = document.createElement('div');
             bonusDiv.className = 'lotto-number bonus-number';
             bonusDiv.textContent = bonusNumber;
